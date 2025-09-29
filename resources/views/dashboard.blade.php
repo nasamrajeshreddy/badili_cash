@@ -9,6 +9,6 @@
 
 @section('content')
 <div class="text-gray-700 text-lg">
-    Welcome to SeenuMayya's Badili Cash! Mammolaga undadu manatho ! Use the sidebar to navigate.
+    Welcome to Badili Cash! Use the sidebar to navigate.
 </div>
 @endsection

@@ -10,10 +10,11 @@ class PaymentLink extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'name',
+        'phone',
         'amount',
         'currency',
-        'description',
-        'status'
+        'status',
+        'link',
     ];
 }
