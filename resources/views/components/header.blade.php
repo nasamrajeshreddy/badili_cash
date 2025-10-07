@@ -1,5 +1,5 @@
 <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Badili Cash Dashboard</h1>
+    <h1 class="text-xl font-bold">BadiliCash Dashboard</h1>
     <div>
         <span class="mr-4">{{ Auth::user()->name }}</span>
         <form method="POST" action="{{ route('logout') }}" class="inline">
