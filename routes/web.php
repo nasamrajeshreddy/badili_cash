@@ -1,19 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\SettlementController;
-use App\Http\Controllers\PaymentLinkController;
-use App\Http\Controllers\RefundController;
+use App\Http\Controllers\ApiLogController;
 use App\Http\Controllers\PayoutController;
-use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\RefundController;
+use App\Http\Controllers\DisputeController;
+use App\Http\Controllers\SummaryController;
+use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\CustomerController;
 
 
-use App\Http\Controllers\DisputeController;
+use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ChargebackController;
-use App\Http\Controllers\ApiLogController;
-use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\ApiKeyController;
 use App\Http\Controllers\ApiDocumentationController;
 use App\Http\Controllers\SdkController;
@@ -26,6 +24,9 @@ use App\Http\Controllers\ReconciliationController;
 use App\Http\Controllers\FeeCommissionController;
 
 
+use App\Http\Controllers\SettlementController;
+use App\Http\Controllers\PaymentLinkController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -160,10 +161,11 @@ Route::prefix('admin')->group(function () {
     Route::post('/api-keys', [ApiKeyController::class, 'store'])->name('api_keys.store');
     Route::get('/api-keys/toggle/{id}', [ApiKeyController::class, 'toggleStatus'])->name('api_keys.toggle');
 
-
 });
 
-
+//summary routes
+Route::get('/overview', [SummaryController::class, 'overview'])->name('summary.overview');
+Route::get('/analytics', [SummaryController::class, 'analytics'])->name('summary.analytics');
 
 Route::prefix('admin')->group(function () {
     Route::get('/api-docs', [ApiDocumentationController::class, 'index'])->name('api_docs.index');
