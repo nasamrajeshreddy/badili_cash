@@ -140,6 +140,112 @@
     </ul>
 </li>
 
+
+<li class="mt-2">
+    <button onclick="toggleDropdown('apiKeysMenu')" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700 flex justify-between items-center">
+        API Keys <span>+</span>
+    </button>
+    <ul id="apiKeysMenu" class="ml-4 mt-2 space-y-1 hidden">
+        <li>
+            <a href="{{ route('api_keys.index') }}" 
+               class="hover:text-yellow-400 block px-2 py-1 rounded">
+                All API Keys
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('api_keys.create') }}" 
+               class="hover:text-yellow-400 block px-2 py-1 rounded">
+                Generate API Key
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="mt-2">
+    <button onclick="toggleDropdown('developerMenu')" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700  flex justify-between items-center">
+        Developer Tools <span>+</span>
+    </button>
+    <ul id="developerMenu" class="ml-4 mhover:bg-gray-700t-2 space-y-1 hidden">
+        <li>
+            <a href="{{ route('api_keys.index') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">API Keys</a>
+        </li>
+        <li>
+            <a href="{{ route('api_docs.index') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">API Documentation</a>
+        </li>
+        <li>
+            <a href="{{ route('sdk.index') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">SDKs & Plugins</a>
+        </li>
+        <li>
+            <a href="{{ route('sandbox.logs') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">Sandbox Logs</a>
+        </li>
+    </ul>
+</li>
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('settings.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Settings
+    </a>
+</li>
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('notifications.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Notifications
+    </a>
+</li>
+
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('audit_logs.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Audit / Activity Logs
+    </a>
+</li>
+
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('system_health.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        System Health
+    </a>
+</li>
+
+
+
+
+<li class="mt-2">
+    <button onclick="toggleDropdown('reconciliationMenu')" 
+            class="w-full text-left px-4 py-2 hover:bg-gray-700 flex justify-between items-center">
+        Reconciliation <span>+</span>
+    </button>
+    <ul id="reconciliationMenu" class="ml-4 mt-2 space-y-1 hidden">
+        <li><a href="{{ route('reconciliation.index') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">Dashboard</a></li>
+        <li><a href="{{ route('reconciliation.upload') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">Upload CSV</a></li>
+        <li><a href="{{ route('reconciliation.files') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">Uploaded Files</a></li>
+    </ul>
+</li>
+
+
+
+
+<li class="mt-2">
+    <button onclick="toggleDropdown('feesMenu')" class="w-full text-left px-4 py-2 hover:bg-gray-700 flex justify-between items-center">
+        Fees & Commissions <span>+</span>
+    </button>
+    <ul id="feesMenu" class="ml-4 mt-2 space-y-1 hidden">
+        <li>
+            <a href="{{ route('fees_commissions.index') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">
+                All Fees & Commissions
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('fees_commissions.create') }}" class="hover:text-yellow-400 block px-2 py-1 rounded">
+                Add Fee / Commission
+            </a>
+        </li>
+    </ul>
+</li>
+
+
     </ul>
 </aside>
 

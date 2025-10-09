@@ -14,6 +14,18 @@ use App\Http\Controllers\DisputeController;
 use App\Http\Controllers\ChargebackController;
 use App\Http\Controllers\ApiLogController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\ApiKeyController;
+use App\Http\Controllers\ApiDocumentationController;
+use App\Http\Controllers\SdkController;
+use App\Http\Controllers\SandboxLogController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AuditLogController;
+use App\Http\Controllers\SystemHealthController;
+use App\Http\Controllers\ReconciliationController;
+use App\Http\Controllers\FeeCommissionController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -140,5 +152,77 @@ Route::post('/admin/webhooks/store', [WebhookController::class, 'store'])->name(
 // SHOW single webhook (dynamic) - must be after create
 Route::get('/admin/webhooks/{id}', [WebhookController::class, 'show'])->name('webhooks.show');
 
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/api-keys', [ApiKeyController::class, 'index'])->name('api_keys.index');
+    Route::get('/api-keys/create', [ApiKeyController::class, 'create'])->name('api_keys.create');
+    Route::post('/api-keys', [ApiKeyController::class, 'store'])->name('api_keys.store');
+    Route::get('/api-keys/toggle/{id}', [ApiKeyController::class, 'toggleStatus'])->name('api_keys.toggle');
+
+
 });
 
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/api-docs', [ApiDocumentationController::class, 'index'])->name('api_docs.index');
+    Route::get('/api-docs/{endpoint}', [ApiDocumentationController::class, 'show'])->name('api_docs.show');
+});
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/sdks', [SdkController::class, 'index'])->name('sdk.index');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/sandbox-logs', [SandboxLogController::class, 'index'])->name('sandbox.logs');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+});
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}', [NotificationController::class, 'show'])->name('notifications.show');
+    Route::post('/notifications/{id}/mark-read', [NotificationController::class, 'markAsRead'])->name('notifications.markRead');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit_logs.index');
+    Route::get('/audit-logs/{id}', [AuditLogController::class, 'show'])->name('audit_logs.show');
+});
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/system-health', [SystemHealthController::class, 'index'])->name('system_health.index');
+    Route::get('/system-health/check', [SystemHealthController::class, 'check'])->name('system_health.check');
+});
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/reconciliation', [ReconciliationController::class, 'index'])->name('reconciliation.index');
+    Route::get('/reconciliation/upload', [ReconciliationController::class, 'uploadForm'])->name('reconciliation.uploadForm');
+    Route::post('/reconciliation/upload', [ReconciliationController::class, 'upload'])->name('reconciliation.upload');
+    Route::get('/reconciliation/files', [ReconciliationController::class, 'files'])->name('reconciliation.files');
+    Route::get('/reconciliation/download/{filename}', [ReconciliationController::class, 'download'])->name('reconciliation.download');
+    Route::get('/reconciliation/{id}', [ReconciliationController::class, 'show'])->name('reconciliation.show');
+});
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/fees-commissions', [FeeCommissionController::class, 'index'])->name('fees_commissions.index');
+    Route::get('/fees-commissions/create', [FeeCommissionController::class, 'create'])->name('fees_commissions.create');
+    Route::post('/fees-commissions', [FeeCommissionController::class, 'store'])->name('fees_commissions.store');
+    Route::get('/fees-commissions/{feeCommission}/edit', [FeeCommissionController::class, 'edit'])->name('fees_commissions.edit');
+    Route::put('/fees-commissions/{feeCommission}', [FeeCommissionController::class, 'update'])->name('fees_commissions.update');
+    Route::get('/fees-commissions/toggle/{feeCommission}', [FeeCommissionController::class, 'toggleStatus'])->name('fees_commissions.toggle');
+});
+
+});
