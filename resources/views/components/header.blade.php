@@ -1,5 +1,5 @@
 <header class="relative z-50 shadow p-4 flex justify-between items-center 
-               bg-gradient-to-r from-[#5921b7] to-[#531cbb]">
+               bg-gradient-to-r from-[#4b0082] to-[#4b0082]">
   <h1 class="text-xl font-bold text-white">BadiliCash Dashboard</h1>
 
   <!-- Profile Dropdown -->
