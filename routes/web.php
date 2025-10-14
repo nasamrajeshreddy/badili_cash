@@ -26,11 +26,11 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SettlementController;
 use App\Http\Controllers\PaymentLinkController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\KycController;
 
 
-use App\Http\Controllers\SettlementController;
-use App\Http\Controllers\PaymentLinkController;
-use App\Http\Controllers\TransactionController;
+
+
 
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\TicketReplyController;
