@@ -274,8 +274,6 @@ aside#sidebar ul li button, aside#sidebar ul li a {
                 Generate API Key
             </a>
         </li>
-    </ul>
-</li>
 
 <li class="mt-2">
     <button onclick="toggleDropdown('developerMenu')" 
@@ -388,6 +386,27 @@ aside#sidebar ul li button, aside#sidebar ul li a {
 
 
 
+        <!-- API Logs -->
+        <li class="mt-2">
+            <button onclick="toggleDropdown('apiLogsMenu')" class="w-full text-left px-4 py-2 hover:bg-white/10 flex justify-between items-center rounded">
+                API Logs <span>+</span>
+            </button>
+            <ul id="apiLogsMenu" class="ml-4 mt-2 space-y-1 hidden">
+                <li><a href="{{ route('api_logs.index') }}" class="block px-2 py-1 rounded hover:bg-white/20">All Logs</a></li>
+                <li><a href="{{ route('api_logs.create') }}" class="block px-2 py-1 rounded hover:bg-white/20">Add Log</a></li>
+            </ul>
+        </li>
+
+        <!-- Webhooks -->
+        <li class="mt-2">
+            <button onclick="toggleDropdown('webhooksMenu')" class="w-full text-left px-4 py-2 hover:bg-white/10 flex justify-between items-center rounded">
+                Webhooks <span>+</span>
+            </button>
+            <ul id="webhooksMenu" class="ml-4 mt-2 space-y-1 hidden">
+                <li><a href="{{ route('webhooks.index') }}" class="block px-2 py-1 rounded hover:bg-white/20">All Webhooks</a></li>
+                <li><a href="{{ route('webhooks.create') }}" class="block px-2 py-1 rounded hover:bg-white/20">Add Webhook</a></li>
+            </ul>
+        </li>
     </ul>
 </aside>
 

@@ -23,6 +23,9 @@ use App\Http\Controllers\SystemHealthController;
 use App\Http\Controllers\ReconciliationController;
 use App\Http\Controllers\FeeCommissionController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\SettlementController;
+use App\Http\Controllers\PaymentLinkController;
+use App\Http\Controllers\TransactionController;
 
 
 use App\Http\Controllers\SettlementController;
@@ -250,6 +253,14 @@ Route::prefix('merchant')->group(function () {
         Route::put('/fees-commissions/{feeCommission}', [FeeCommissionController::class, 'update'])->name('fees_commissions.update');
         Route::get('/fees-commissions/toggle/{feeCommission}', [FeeCommissionController::class, 'toggleStatus'])->name('fees_commissions.toggle');
     });
+
+
+//summary routes
+Route::get('/overview', [SummaryController::class, 'overview'])->name('summary.overview');
+Route::get('/analytics', [SummaryController::class, 'analytics'])->name('summary.analytics');
+
+
+
 });
 
 
