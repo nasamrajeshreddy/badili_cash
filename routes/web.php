@@ -22,6 +22,8 @@ use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\SystemHealthController;
 use App\Http\Controllers\ReconciliationController;
 use App\Http\Controllers\FeeCommissionController;
+use App\Http\Controllers\MerchantOnboardController;
+use App\Http\Controllers\KycController;
 
 
 use App\Http\Controllers\SettlementController;
@@ -35,6 +37,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+// User Profile
+Route::get('/user_profile', function () {
+    return view('profile.userprofile');
+})->name('user.profile');
+
+
+
+
 
     // Transactions
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
@@ -69,6 +80,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/payouts/{payout}/status', [PayoutController::class, 'updateStatus'])->name('payouts.updateStatus');
 
 
+
+// Merchant Onboarding Routes
+Route::prefix('merchant')->group(function () {
+
+    // KYC Form
+    Route::get('/kyc', [KycController::class, 'showForm'])->name('merchant.kyc.show');
+    Route::post('/kyc', [KycController::class, 'submitForm'])->name('merchant.kyc.submit');
+
+    // Onboarding
+    Route::get('/onboard', [MerchantOnboardController::class, 'showOnboardForm'])->name('merchant.onboard.show');
+    Route::post('/onboard', [MerchantOnboardController::class, 'submitOnboard'])->name('merchant.onboard.submit');
+
+});
 
 
     // Show all merchants (Admin Panel)

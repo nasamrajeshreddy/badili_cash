@@ -1,89 +1,138 @@
 <style>
-  /* Sidebar */
-  aside#sidebar {
+/* Sidebar base */
+aside#sidebar {
     width: 16rem;
-    transition: transform 0.3s ease;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     overflow-y: auto;
-    background: linear-gradient(180deg, #065f46 0%, #0077b6 100%);
-    color: white;
-    border-bottom: 4px solid #10b981;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #4b0082 0%, #001f3f 100%); /* purple to navy */
+    color: #ffffff;
+    font-family: 'Comic Sans MS', sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 50;
-    transform: translateX(0);
-  }
+    transition: transform 0.3s ease, background 0.3s ease;
+}
 
-  aside#sidebar.collapsed {
+/* Collapsed sidebar */
+aside#sidebar.collapsed {
     transform: translateX(-100%);
-  }
+}
 
-  #sidebarHeader {
+/* Sidebar header */
+#sidebarHeader {
     padding: 1rem;
-    font-weight: bold;
-    font-size: 1.125rem;
-    border-bottom: 1px solid #22c55e;
-    white-space: nowrap;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 2px solid #7f5af0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  /* ✅ Toggle Button INSIDE sidebar */
-  #hamburgerBtn {
-    background: #10b981;
-    border: none;
     cursor: pointer;
+}
+
+/* Hamburger button */
+#hamburgerBtn {
+    background: #7f5af0;
+    border: none;
     color: white;
     padding: 0.4rem;
-    border-radius: 9999px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-  }
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+#hamburgerBtn:hover { transform: scale(1.1); }
 
-  /* Main content wrapper */
-  #dashboardWrapper {
+/* Sidebar links */
+aside#sidebar ul li button {
+   font-family: 'Comic Sans MS', sans-serif;
+    font-weight: 10;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
+}
+aside#sidebar ul li button:hover {
+    background: rgba(255,255,255,0.1);
+    color: #7f5af0;
+}
+
+/* Active tab */
+aside#sidebar ul li button.active,
+aside#sidebar ul li a.active {
+    background: #7f5af0;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+/* Dropdown arrows */
+aside#sidebar ul li button span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+aside#sidebar ul li button.open span {
+    transform: rotate(90deg); /* rotate arrow when open */
+}
+
+/* Dropdown menu */
+aside#sidebar ul li ul {
+    transition: all 0.3s ease;
+}
+aside#sidebar ul li ul li a {
+    font-size: 0.75rem;
+    padding-left: 1rem;
+    color: #d1d5db;
+    transition: all 0.2s;
+}
+aside#sidebar ul li ul li a:hover {
+    color: #7f5af0;
+}
+
+/* Scrollbar styling */
+aside#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+aside#sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+aside#sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
+
+/* Smooth text */
+aside#sidebar ul li button, aside#sidebar ul li a {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Dashboard wrapper transition */
+#dashboardWrapper {
+    transition: margin-left 0.3s ease;
     margin-left: 16rem;
-  }
-
-  #dashboardWrapper.expanded {
-    margin-left: 0;
-  }
-
-  /* ✅ Sidebar reopen button */
-  #sidebarToggle {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    background: #10b981;
-    border: none;
-    cursor: pointer;
-    color: white;
-    padding: 0.4rem;
-    border-radius: 9999px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    z-index: 60;
-  }
+}
+#dashboardWrapper.expanded { margin-left: 0; }
 </style>
 
+
 <!-- Sidebar -->
-<aside id="sidebar">
-  <div id="sidebarHeader">
-    <span>BadiliCash</span>
-<button id="hamburgerBtn" type="button" title="Collapse sidebar">
-      <!-- hamburger icon -->
+<!--<aside id="sidebar">--><!--this isw disabled after push we made to escape two scroll down bars 09/10/2025-->
+  <div id="sidebarHeader" class="flex justify-center p-4 border-b border-white/20">
+    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftracxn.com%2Fd%2Fcompanies%2Fagdp-fintech%2F__P2fVZbrAzC-SENUwhp6eM3bWRRzE1RbrT5JepcsxIm0&psig=AOvVaw0G2rBjl3-wnNPPd60sSG7e&ust=1760431755289000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCjlr_loJADFQAAAAAdAAAAABAE" 
+         alt="BadiliCash Logo" 
+         class="h-8 w-auto" 
+         style="margin-top: 60px;">
+<!-- <button id="hamburgerBtn" type="button" title="Collapse sidebar">
+       hamburger icon
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
         stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
         <line x1="3" y1="6" x2="21" y2="6" />
         <line x1="3" y1="12" x2="21" y2="12" />
         <line x1="3" y1="18" x2="21" y2="18" />
       </svg>
-    </button>
+    </button> -->
   </div>
-  <ul class="mt-4 space-y-2">
+  <!-- <ul class="mt-4 space-y-2"> -->
     <li>
       <button onclick="toggleDropdown('summaryMenu')"
         class="w-full text-left px-4 py-2 hover:bg-white/10 flex justify-between items-center rounded">
@@ -147,6 +196,18 @@
             <ul id="payoutsMenu" class="ml-4 mt-2 space-y-1 hidden">
                 <li><a href="{{ route('payouts.index') }}" class="block px-2 py-1 rounded hover:bg-white/20">All Payouts</a></li>
                 <li><a href="{{ route('payouts.create') }}" class="block px-2 py-1 rounded hover:bg-white/20">Add Payout</a></li>
+            </ul>
+        </li>
+
+
+         <!-- Merchants on board -->
+        <li class="mt-2">
+            <button onclick="toggleDropdown('merchantsMenu')" class="w-full text-left px-4 py-2 hover:bg-white/10 flex justify-between items-center rounded">
+                Merchants onboard <span>+</span>
+            </button>
+            <ul id="merchantsMenu" class="ml-4 mt-2 space-y-1 hidden">
+                <li><a href="{{ route('merchant.kyc.show') }}" class="block px-2 py-1 rounded hover:bg-white/20">KYC</a></li>
+                <li><a href="{{ route('merchant.onboard.show') }}" class="block px-2 py-1 rounded hover:bg-white/20">Onboard</a></li>
             </ul>
         </li>
 
@@ -236,33 +297,6 @@
         </li>
     </ul>
 </li>
-<li class="mt-2 ml-2 mb-2">
-    <a href="{{ route('settings.index') }}" 
-       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
-        Settings
-    </a>
-</li>
-<li class="mt-2 ml-2 mb-2">
-    <a href="{{ route('notifications.index') }}" 
-       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
-        Notifications
-    </a>
-</li>
-
-<li class="mt-2 ml-2 mb-2">
-    <a href="{{ route('audit_logs.index') }}" 
-       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
-        Audit / Activity Logs
-    </a>
-</li>
-
-<li class="mt-2 ml-2 mb-2">
-    <a href="{{ route('system_health.index') }}" 
-       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
-        System Health
-    </a>
-</li>
-
 
 
 
@@ -321,16 +355,49 @@
                 <li><a href="{{ route('webhooks.create') }}" class="block px-2 py-1 rounded hover:bg-white/20">Add Webhook</a></li>
             </ul>
         </li>
+
+
+<!-----settings -->
+
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('settings.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Settings
+    </a>
+</li>
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('notifications.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Notifications
+    </a>
+</li>
+
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('audit_logs.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        Audit / Activity Logs
+    </a>
+</li>
+
+<li class="mt-2 ml-2 mb-2">
+    <a href="{{ route('system_health.index') }}" 
+       class="hover:text-yellow-400 hover:bg-gray-700 block px-2 py-1 rounded">
+        System Health
+    </a>
+</li>
+
+
+
     </ul>
 </aside>
 
-<!-- Sidebar reopen button -->
-<button id="sidebarToggle" class="hidden" title="Open sidebar">
+<!-- Sidebar reopen button --><!--this isw disabled after push we made to escape two scroll down bars 09/10/2025-->
+<!--<button id="sidebarToggle" class="hidden" title="Open sidebar">
   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
     stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
     <polyline points="9 18 15 12 9 6" />
   </svg>
-</button>
+</button>-->
 
 <!-- Dashboard -->
 <div id="dashboardWrapper">
@@ -339,31 +406,29 @@
   </div>
 </div>
 <script>
-  function toggleDropdown(id) {
+function toggleDropdown(id, btn) {
     const menu = document.getElementById(id);
+    const allMenus = document.querySelectorAll('aside#sidebar ul li ul');
+    const allButtons = document.querySelectorAll('aside#sidebar ul li > button');
+
+    // Close all other dropdowns
+    allMenus.forEach(m => { if (m.id !== id) m.classList.add('hidden'); });
+    allButtons.forEach(b => { if (b !== btn) b.classList.remove('open'); });
+
+    // Toggle current dropdown
     menu.classList.toggle('hidden');
-  }
+    btn.classList.toggle('open');
+}
 
-  const sidebar = document.getElementById('sidebar');
-  const dashboard = document.getElementById('dashboardWrapper');
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const sidebarToggle = document.getElementById('sidebarToggle');
-
-  // ✅ Collapse sidebar when hamburger clicked
-  hamburgerBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // stop page reload
-    sidebar.classList.toggle('collapsed');
-    dashboard.classList.toggle('expanded');
-    sidebarToggle.classList.toggle('hidden');
-  });
-
-  // ✅ Reopen sidebar when arrow clicked
-  sidebarToggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    sidebar.classList.toggle('collapsed');
-    dashboard.classList.toggle('expanded');
-    sidebarToggle.classList.toggle('hidden');
-  });
+// Highlight active link based on current URL
+document.querySelectorAll('aside#sidebar a').forEach(link => {
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+        const parentBtn = link.closest('ul').previousElementSibling;
+        if (parentBtn) parentBtn.classList.add('open');
+        link.closest('ul').classList.remove('hidden');
+    }
+});
 </script>
 <script>
 document.addEventListener('click', function (e) {

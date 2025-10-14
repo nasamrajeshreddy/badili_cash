@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('refunds', function (Blueprint $table) {
             $table->id();
-            $table->string('refund_id')->unique()->after('id');
+            $table->string('refund_id')->unique();
             $table->unsignedBigInteger('transaction_id');
             $table->decimal('amount', 10, 2);
             $table->enum('status', ['pending', 'processed', 'failed'])->default('pending');
