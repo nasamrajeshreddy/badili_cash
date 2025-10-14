@@ -22,12 +22,15 @@ use App\Http\Controllers\AuditLogController;
 use App\Http\Controllers\SystemHealthController;
 use App\Http\Controllers\ReconciliationController;
 use App\Http\Controllers\FeeCommissionController;
+use App\Http\Controllers\RolePermissionController;
 
 
 use App\Http\Controllers\SettlementController;
 use App\Http\Controllers\PaymentLinkController;
 use App\Http\Controllers\TransactionController;
 
+use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\TicketReplyController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -226,3 +229,37 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/fees-commissions/toggle/{feeCommission}', [FeeCommissionController::class, 'toggleStatus'])->name('fees_commissions.toggle');
     });
 });
+
+
+    // Route::middleware(['auth'])->group(function () {
+    //     Route::get('/admin/support-tickets', [SupportTicketController::class, 'index'])->name('support_tickets.index');
+    //     Route::get('/admin/support-tickets/create', [SupportTicketController::class, 'create'])->name('support_tickets.create');
+    //     Route::post('/admin/support-tickets', [SupportTicketController::class, 'store'])->name('support_tickets.store');
+    //     Route::get('/admin/support-tickets/{id}', [SupportTicketController::class, 'show'])->name('support_tickets.show');
+    //     Route::put('/admin/support-tickets/{id}', [SupportTicketController::class, 'update'])->name('support_tickets.update');
+    //     Route::delete('/admin/support-tickets/{id}', [SupportTicketController::class, 'destroy'])->name('support_tickets.destroy');
+    // Route::post('/admin/support-tickets/{id}/reply', [SupportTicketController::class, 'addReply'])->name('support_tickets.reply');
+    // Route::post('/admin/support-tickets/{id}/update', [SupportTicketController::class, 'update'])->name('support_tickets.update');
+
+
+    // });
+// User Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/support', [SupportTicketController::class, 'index'])->name('user.tickets.index');
+    Route::get('/support/create', [SupportTicketController::class, 'create'])->name('user.tickets.create');
+    Route::post('/support', [SupportTicketController::class, 'store'])->name('user.tickets.store');
+    Route::get('/support/{ticket}', [SupportTicketController::class, 'show'])->name('user.tickets.show');
+    Route::post('/support/{ticket}/reply', [TicketReplyController::class, 'store'])->name('user.tickets.reply');
+});
+
+// Admin Routes
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/tickets', [SupportTicketController::class, 'adminIndex'])->name('admin.tickets.index');
+    Route::get('/tickets/{ticket}', [SupportTicketController::class, 'adminShow'])->name('admin.tickets.show');
+    Route::post('/tickets/{ticket}/reply', [TicketReplyController::class, 'adminReply'])->name('admin.tickets.reply');
+});
+
+
+
+
+
